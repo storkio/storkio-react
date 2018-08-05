@@ -1,0 +1,42 @@
+{
+  "name": "storkio-react",
+  "version": "1.0.0",
+  "description": "React generator",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm run lint && npm run jest",
+		"jest": "jest --testMatch **/__tests__/**/*.spec.js",
+		"build": "rimraf dist && webpack --env=production --define process.env.NODE_ENV=\"'production'\"",
+		"lint": "run-p lint-*",
+		"precommit": "lint-staged",
+		"commitmsg": "commitlint -e",
+		"lint-client": "eslint src --fix",
+		"lint-tests": "eslint __tests__ --fix",
+		"dev": "webpack-dev-server --open",
+		"prod": "npm run build",
+		"dev-docker": "client-dev-docker",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storkio/storkio-react.git"
+  },
+  "keywords": [
+	"react",
+	"starter",
+	"generator"
+  ],
+  "author": "storkio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/storkio/storkio-react/issues"
+  },
+  "homepage": "https://github.com/storkio/storkio-react#readme",
+  "lint-staged": {
+		"*.js": [
+			"eslint --fix",
+			"git add"
+		]
+	},
+	"devDependencies": {
+	}
+}
