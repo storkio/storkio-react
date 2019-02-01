@@ -2,8 +2,9 @@ import React, {memo} from 'react';
 import {Flex, Box} from 'reflexbox';
 import {Card, CardContent, CardHeader} from '@material-ui/core';
 import TodoList from './TodoList';
-import AddTodo from './TodoList/AddTodo';
-import {useInputValue, useTodos} from './TodoList/state';
+import AddTodo from './AddTodo';
+import {useTodos} from './TodoList/state';
+import {useInputValue} from './AddTodo/state';
 
 const items = [{
   id: 1,

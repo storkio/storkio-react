@@ -15,16 +15,13 @@ const NotPaddedListItem = styled(ListItem)`
 `;
 
 export default memo(({text, checked, onCheckBoxToggle, onButtonClick}) => (
-  <NotPaddedListItem>
-    <Checkbox
-      onClick={onCheckBoxToggle}
-      checked={checked}
-    />
-    <ListItemText primary={text}/>
+  <NotPaddedListItem button dense onClick={onCheckBoxToggle}>
+    <Checkbox disableRipple checked={checked} />
+    <ListItemText primary={text} />
     <ListItemSecondaryAction>
       <Tooltip title={'Delete'}>
         <IconButton aria-label='Delete Todo' onClick={onButtonClick}>
-          <DeleteOutlined/>
+          <DeleteOutlined />
         </IconButton>
       </Tooltip>
     </ListItemSecondaryAction>
