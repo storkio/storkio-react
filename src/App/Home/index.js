@@ -19,7 +19,7 @@ const items = [{
   checked: true
 }];
 
-const Home = memo(props => {
+export default memo(() => {
   const {inputValue, changeInput, clearInput, keyInput} = useInputValue();
   const {todos, addTodo, checkTodo, removeTodo} = useTodos(items);
 
@@ -41,12 +41,10 @@ const Home = memo(props => {
               onButtonClick={clearInputAndAddTodo}
               onInputKeyPress={event => keyInput(event, clearInputAndAddTodo)}
             />
-            <TodoList items={todos} onItemCheck={idx => checkTodo(idx)} onItemRemove={idx => removeTodo(idx)} />
+            <TodoList todos={todos} onItemCheck={id => checkTodo(id)} onItemRemove={id => removeTodo(id)} />
           </CardContent>
         </Card>
       </Box>
     </Flex>
   );
 });
-
-export default Home;

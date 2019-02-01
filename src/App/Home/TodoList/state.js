@@ -26,18 +26,24 @@ export const useTodos = (initialValue = []) => {
     todos,
     addTodo: text => {
       if (text !== '') {
+        const newTodo = {
+          checked: false,
+          text,
+          id: todos.length + 1
+        };
+
         setTodos(
-          todos.concat({
-            text,
-            checked: false
-          })
+          [
+            ...todos,
+            newTodo
+          ]
         );
       }
     },
-    checkTodo: idx => {
+    checkTodo: id => {
       setTodos(
-        todos.map((todo, index) => {
-          if (idx === index) {
+        todos.map(todo => {
+          if (todo.id === id) {
             todo.checked = !todo.checked;
           }
 
@@ -45,8 +51,8 @@ export const useTodos = (initialValue = []) => {
         })
       );
     },
-    removeTodo: idx => {
-      setTodos(todos.filter((todo, index) => idx !== index));
+    removeTodo: id => {
+      setTodos(todos.filter(todo => todo.id !== id));
     }
   };
 };
