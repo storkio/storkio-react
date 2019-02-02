@@ -1,10 +1,15 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
+import history from './history';
 import './styles.css';
-import App from './App';
+import Router from './routes';
 
-const rootComponentRender = () => render(<AppContainer><App /></AppContainer>, document.getElementById('root'));
+const rootComponentRender = () => render(
+  <AppContainer>
+    <Router history={history} />
+  </AppContainer>,
+  document.getElementById('root'));
 
 rootComponentRender();
 

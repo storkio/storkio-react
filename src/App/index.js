@@ -2,8 +2,7 @@ import React from 'react';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {CssBaseline} from '@material-ui/core';
 import {Flex} from 'reflexbox';
-import Toolbar from './Toolbar';
-import Home from './Home';
+import AppBar from './components/Toolbar';
 
 const theme = createMuiTheme({
   palette: {
@@ -11,12 +10,12 @@ const theme = createMuiTheme({
   }
 });
 
-export default () => (
+export default ({children}) => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline>
       <Flex auto>
-        <Toolbar />
-        <Home />
+        <AppBar />
+        {children}
       </Flex>
     </CssBaseline>
   </MuiThemeProvider>
