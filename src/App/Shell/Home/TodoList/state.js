@@ -4,12 +4,30 @@ export const useTodos = (initialValue = []) => {
   const [todos, setTodos] = useState(initialValue);
   const [visibility, setVisibility] = useState(true);
   const [filteredTodos, setFilteredTodos] = useState(initialValue);
+  const [activeTodos, setActiveTodos] = useState(0);
+  const [allChecked, setAllChecked] = useState(false);
 
   useEffect(() => {
     setFilteredTodos(todos.filter(({checked}) => visibility || !checked));
-  }, [visibility, todos]);
+  }, [visibility]);
+
+  useEffect(() => {
+    setFilteredTodos(todos.filter(({checked}) => visibility || !checked));
+    setActiveTodos(todos.reduce((count, {checked}) => count + !checked, 0));
+    setAllChecked(todos.every(({checked}) => checked));
+  }, [todos]);
 
   return {
+    activeTodos,
+    checkAllTodos: checked => {
+      setTodos(todos.map(todo => {
+        todo.checked = checked;
+
+        return todo;
+      }
+      ));
+    },
+    allChecked,
     visibility,
     filteredTodos,
     toggleVisibility: () => {
