@@ -1,10 +1,20 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 export const useTodos = (initialValue = []) => {
   const [todos, setTodos] = useState(initialValue);
+  const [visibility, setVisibility] = useState(true);
+  const [filteredTodos, setFilteredTodos] = useState(initialValue);
+
+  useEffect(() => {
+    setFilteredTodos(todos.filter(({checked}) => visibility || !checked));
+  }, [visibility, todos]);
 
   return {
-    todos,
+    visibility,
+    filteredTodos,
+    toggleVisibility: () => {
+      setVisibility(!visibility);
+    },
     addTodo: text => {
       if (text !== '') {
         const newTodo = {
