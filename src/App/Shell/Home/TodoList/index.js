@@ -11,7 +11,7 @@ const ScrollableDiv = styled(Flex)
 `;
 
 const TodoList = memo(({todos, onItemRemove, onItemCheck}) => (
-  <div>
+  <>
     {todos.length > 0 ?
       (
         <List>
@@ -29,7 +29,7 @@ const TodoList = memo(({todos, onItemRemove, onItemCheck}) => (
       ) : (
         <Typography variant={'h5'}>{'There are no Todos yet!'}</Typography>
       )}
-  </div>
+  </>
 ));
 
 export default TodoList;
