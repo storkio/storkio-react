@@ -39,10 +39,10 @@ export const useTodos = (initialValue = items) => {
 
   const checkAllTodos = checked => {
     setTodos(todos.map(todo => {
-        todo.checked = checked;
+      todo.checked = checked;
 
-        return todo;
-      }
+      return todo;
+    }
     ));
   };
 
@@ -52,6 +52,7 @@ export const useTodos = (initialValue = items) => {
 
   return {
     todos,
+    setTodos,
     activeTodos,
     checkAllTodos,
     addTodo,

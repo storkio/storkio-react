@@ -1,6 +1,7 @@
 import React, {memo, useState, useEffect} from 'react';
 import {Flex, Box} from 'reflexbox';
 import {Card, CardContent, CardHeader} from '@material-ui/core';
+import axios from 'axios';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
 import ToggleVisibilityButton from './ToggleVisibilityButton';
@@ -8,14 +9,18 @@ import CompleteAllButton from './CompleteAllButton';
 import {useTodos} from './hooks/useTodos';
 import {useFilteredTodos} from './hooks/useFilteredTodos';
 import {useInputValue} from './AddTodo/state';
+import {useAxiosFetch} from './hooks/useAxiosFetch';
 
 
 export default memo(() => {
   const {inputValue, changeInput, clearInput, keyInput} = useInputValue();
-  const {todos, checkAllTodos, activeTodos, addTodo, checkTodo, removeTodo} = useTodos();
+  const {todos, setTodos, checkAllTodos, activeTodos, addTodo, checkTodo, removeTodo} = useTodos();
+  // const {data, doGet} = useAxiosFetch('/api/todos');
   const [visibility, setVisibility] = useState(true);
   const [allChecked, setAllChecked] = useState(false);
   const [filteredTodos] = useFilteredTodos({todos, visibility});
+
+  // doGet();
 
   useEffect(() => {
     setAllChecked(todos.every(({checked}) => checked));
